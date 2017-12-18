@@ -1,0 +1,25 @@
+   public override string[] GetRolesForUser(string username)
+        {
+
+            var a = db.Users.Where(i => i.Username == username).SingleOrDefault();
+            string role = a.Role;
+            string[] rolearray = { role };
+                
+                 return rolearray;
+        }
+
+
+
+
+Web.Config
+
+ <authentication mode="Forms" >
+     <forms loginUrl="Account1/Login"></forms>  
+    </authentication>
+    
+      <roleManager enabled="true" defaultProvider="Myprovider">
+        <providers>
+          <clear/>
+          <add name="Myprovider" type="WebApplication14.Models.Approle"/>
+        </providers>
+    </roleManager>
